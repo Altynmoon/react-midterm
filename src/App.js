@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import './App.css'; // Импортируйте файл стилей
+
+import FeedPage from './components/FeedPage';
+import PostPage from './components/PostPage';
+import ProfilePage from './components/ProfilePage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <nav className="navbar">
+        <ul className="navbar-list">
+          <li className="navbar-item">
+            <Link to="" className="nav-link">Лента</Link>
+          </li>
+          <li className="navbar-item">
+            <Link to="/post/1" className="nav-link">Пост</Link>
+          </li>
+          <li className="navbar-item">
+            <Link to="/profile" className="nav-link">Профиль</Link>
+          </li>
+        </ul>
+      </nav>
+      <Routes>
+        <Route path="/" element={<FeedPage />} />
+        <Route path="/post/:id" element={<PostPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+      </Routes>
+    </Router>
   );
 }
 
